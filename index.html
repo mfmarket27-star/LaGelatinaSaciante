@@ -5,9 +5,6 @@
   <title>La Gelatina Saciante</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Meta Ads safe -->
-  <meta name="description" content="Descubre un método sencillo para controlar el hambre y facilitar la pérdida de peso sin gimnasio ni dietas extremas.">
-
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -18,56 +15,61 @@
     }
 
     .container {
-      max-width: 800px;
+      max-width: 420px;
       margin: auto;
       padding: 20px;
       text-align: center;
     }
 
     h1 {
-      font-size: 36px;
+      font-size: 30px;
       margin-bottom: 10px;
     }
 
     h2 {
-      font-size: 20px;
+      font-size: 17px;
       font-weight: normal;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       color: #555;
     }
 
-    .video-wrapper {
+    /* VIDEO SHORT */
+    .short-wrapper {
       position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-      margin-bottom: 30px;
+      width: 100%;
+      padding-top: 177.77%; /* 9:16 */
+      overflow: hidden;
+      border-radius: 12px;
+      margin-bottom: 25px;
+      background: #000;
     }
 
-    .video-wrapper iframe {
+    .short-wrapper iframe {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
+      pointer-events: none; /* BLOQUEA CLICS */
     }
 
     .offer {
       display: none;
       background: #ffffff;
-      padding: 25px;
+      padding: 20px;
       border-radius: 8px;
       box-shadow: 0 0 15px rgba(0,0,0,0.1);
-      margin-top: 30px;
+      margin-top: 20px;
     }
 
     .price-old {
       text-decoration: line-through;
       color: #999;
-      font-size: 18px;
+      font-size: 16px;
     }
 
     .price-new {
-      font-size: 32px;
+      font-size: 30px;
       color: #1a8f5c;
       margin: 10px 0;
       font-weight: bold;
@@ -75,29 +77,18 @@
 
     .cta-button {
       display: inline-block;
-      padding: 15px 30px;
+      padding: 14px 26px;
       background-color: #1a8f5c;
       color: #fff;
       text-decoration: none;
-      font-size: 20px;
+      font-size: 18px;
       border-radius: 6px;
       margin-top: 15px;
     }
 
-    .cta-button:hover {
-      background-color: #146b45;
-    }
-
-    .text {
-      font-size: 16px;
-      line-height: 1.6;
-      margin-top: 20px;
-      color: #444;
-    }
-
     footer {
-      margin-top: 40px;
-      font-size: 13px;
+      margin-top: 30px;
+      font-size: 12px;
       color: #777;
     }
   </style>
@@ -105,55 +96,48 @@
 
 <body>
 
-  <div class="container">
-    <h1>La Gelatina Saciante</h1>
-    <h2>El sencillo secreto que está ayudando a muchas personas a perder peso sin gimnasio, sin dietas estrictas y sin pasar hambre constante.</h2>
+<div class="container">
 
-    <p class="text">
-      Mira este breve vídeo hasta el final. Lo que vas a descubrir puede cambiar la forma en la que entiendes el control del hambre.
-    </p>
+  <h1>La Gelatina Saciante</h1>
+  <h2>El sencillo secreto que está ayudando a muchas personas a perder peso sin gimnasio ni dietas extremas.</h2>
 
-    <div class="video-wrapper">
-      <iframe 
-        id="vslVideo"
-        src="https://www.youtube.com/embed/7xnYhf2vbTE?enablejsapi=1"
-        frameborder="0"
-        allow="autoplay; encrypted-media"
-        allowfullscreen>
-      </iframe>
-    </div>
-
-    <div class="offer" id="offer">
-      <h2>Acceso especial por tiempo limitado</h2>
-
-      <p class="price-old">Antes: 47 $</p>
-      <p class="price-new">Ahora: 17 $</p>
-
-      <p class="text">
-        Accede ahora al método completo y descubre cómo facilitar el control del hambre de una forma sencilla y realista.
-      </p>
-
-      <a class="cta-button" href="https://pay.hotmart.com/F104176785O">
-        Quiero descubrir el secreto
-      </a>
-    </div>
-
-    <footer>
-      <p>
-        Este producto es informativo y educativo. No sustituye el consejo médico. Los resultados pueden variar según la persona.
-      </p>
-      <p>
-        © 2026 La Gelatina Saciante · Todos los derechos reservados
-      </p>
-    </footer>
+  <div class="short-wrapper">
+    <iframe
+      src="https://www.youtube.com/embed/7xnYhf2vbTE?autoplay=1&mute=1&controls=0&disablekb=1&modestbranding=1&rel=0&playsinline=1"
+      frameborder="0"
+      allow="autoplay"
+      allowfullscreen>
+    </iframe>
   </div>
 
-  <script>
-    // Mostrar oferta al final del vídeo (460 segundos)
-    setTimeout(function() {
-      document.getElementById("offer").style.display = "block";
-    }, 460000);
-  </script>
+  <div class="offer" id="offer">
+    <h2>Acceso especial</h2>
+
+    <p class="price-old">Antes: 47 $</p>
+    <p class="price-new">Ahora: 17 $</p>
+
+    <a class="cta-button" href="https://pay.hotmart.com/F104176785O">
+      Quiero descubrir el secreto
+    </a>
+  </div>
+
+  <footer>
+    <p>
+      Este contenido es informativo. No sustituye asesoramiento médico. Resultados variables.
+    </p>
+    <p>
+      © 2026 La Gelatina Saciante
+    </p>
+  </footer>
+
+</div>
+
+<script>
+  // Mostrar oferta tras 460 segundos
+  setTimeout(function () {
+    document.getElementById("offer").style.display = "block";
+  }, 460000);
+</script>
 
 </body>
 </html>
