@@ -10,104 +10,102 @@
 
 <style>
 body {
+  background:#fff;
   font-family: Arial, sans-serif;
-  background: #fff;
 }
 
 /* VIDEO 9:16 */
-.video-wrapper {
-  position: relative;
-  padding-bottom: 177.77%;
-  height: 0;
-  overflow: hidden;
-  background: #000;
-  border-radius: 16px;
-  max-width: 400px;
-  margin: 30px auto;
+.video-wrapper{
+  position:relative;
+  padding-bottom:177.77%;
+  height:0;
+  max-width:400px;
+  margin:30px auto;
+  border-radius:18px;
+  overflow:hidden;
+  background:#000;
 }
 
-/* IFRAME */
-#player {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
+/* IFRAME BLOQUEADO */
+#player{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
 }
 
-/* OVERLAY CON IMAGEN */
-.video-cover {
-  position: absolute;
-  inset: 0;
-  z-index: 30;
-  background-image: url('PON_AQUI_LA_URL_DE_TU_IMAGEN');
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
+/* OVERLAY INICIAL */
+.video-cover{
+  position:absolute;
+  inset:0;
+  z-index:20;
+  background-image:url('PON_AQUI_LA_URL_DE_TU_IMAGEN');
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
 }
 
-.video-cover::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.35);
+.video-cover::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.35);
 }
 
-.video-cover-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  color: #fff;
+.cover-content{
+  position:relative;
+  z-index:2;
+  text-align:center;
+  color:#fff;
 }
 
-.play-icon {
-  width: 100px;
-  height: 100px;
-  background: #ff0000;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-  box-shadow: 0 0 0 0 rgba(255,0,0,.6);
-  animation: pulse 2s infinite;
+.play-btn{
+  width:100px;
+  height:100px;
+  background:#ff0000;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:auto;
+  animation:pulse 2s infinite;
 }
 
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(255,0,0,.6); }
-  70% { box-shadow: 0 0 0 25px rgba(255,0,0,0); }
-  100% { box-shadow: 0 0 0 0 rgba(255,0,0,0); }
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(255,0,0,.6);}
+  70%{box-shadow:0 0 0 25px rgba(255,0,0,0);}
+  100%{box-shadow:0 0 0 0 rgba(255,0,0,0);}
 }
 
-/* PROGRESS BAR */
-.progress-container {
-  width: 100%;
-  max-width: 400px;
-  margin: auto;
-  height: 14px;
-  background: #e5e7eb;
-  border-radius: 0 0 16px 16px;
-  overflow: hidden;
+/* BARRA PROGRESO */
+.progress{
+  max-width:400px;
+  margin:auto;
+  height:14px;
+  background:#e5e7eb;
+  border-radius:0 0 18px 18px;
+  overflow:hidden;
 }
 
-.progress-bar {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg,#16a34a,#22c55e);
+.progress-bar{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#16a34a,#22c55e);
 }
 
 /* OFERTA */
-#offer {
-  display: none;
-  max-width: 400px;
-  margin: 30px auto;
-  padding: 20px;
-  background: #ecfdf5;
-  border-radius: 16px;
-  text-align: center;
+#offer{
+  display:none;
+  max-width:400px;
+  margin:30px auto;
+  padding:24px;
+  background:#ecfdf5;
+  border-radius:18px;
+  text-align:center;
 }
 </style>
 </head>
@@ -118,14 +116,13 @@ body {
 
   <div id="player"></div>
 
-  <!-- OVERLAY IMAGEN -->
-  <div id="startOverlay" class="video-cover" onclick="playVideo()">
-    <div class="video-cover-content">
-      <div class="play-icon">
+  <div id="overlay" class="video-cover" onclick="startVideo()">
+    <div class="cover-content">
+      <div class="play-btn">
         <i class="fas fa-play text-4xl ml-1"></i>
       </div>
       <p class="text-2xl font-bold mt-4 uppercase">Ver vídeo</p>
-      <p class="text-lg mt-2 opacity-90">
+      <p class="text-lg mt-2">
         <i class="fas fa-volume-up mr-2"></i> Audio activado
       </p>
     </div>
@@ -133,8 +130,8 @@ body {
 
 </div>
 
-<div class="progress-container">
-  <div id="progressBar" class="progress-bar"></div>
+<div class="progress">
+  <div id="bar" class="progress-bar"></div>
 </div>
 
 <div id="offer">
@@ -142,48 +139,54 @@ body {
   <p class="line-through text-gray-500">$47</p>
   <p class="text-4xl font-bold text-green-600 mb-4">$17</p>
   <a href="https://pay.hotmart.com/F104176785O"
-     class="bg-green-600 text-white py-4 px-6 rounded-xl text-lg block font-bold">
+     class="block bg-green-600 text-white py-4 rounded-xl text-lg font-bold">
      Acceder ahora
   </a>
 </div>
 
 <script>
-const VIDEO_ID = "7xnYhf2vbTE";
-const DURATION = 460;
-let elapsed = 0;
+const VIDEO_ID="7xnYhf2vbTE";
+const VIDEO_DURATION=460;
+let seconds=0;
 let player;
 
-var tag = document.createElement('script');
-tag.src = "https://www.youtube.com/iframe_api";
+let tag=document.createElement("script");
+tag.src="https://www.youtube.com/iframe_api";
 document.body.appendChild(tag);
 
-window.onYouTubeIframeAPIReady = function () {
-  player = new YT.Player('player', {
-    videoId: VIDEO_ID,
-    playerVars: {
-      controls: 0,
-      disablekb: 1,
-      rel: 0,
-      modestbranding: 1,
-      playsinline: 1
+window.onYouTubeIframeAPIReady=function(){
+  player=new YT.Player("player",{
+    videoId:VIDEO_ID,
+    playerVars:{
+      controls:0,
+      fs:0,
+      disablekb:1,
+      rel:0,
+      modestbranding:1,
+      playsinline:1
+    },
+    events:{
+      onStateChange:e=>{
+        if(e.data===YT.PlayerState.PAUSED){
+          player.playVideo();
+        }
+      }
     }
   });
-};
+}
 
-function playVideo() {
-  document.getElementById("startOverlay").style.display = "none";
+function startVideo(){
+  document.getElementById("overlay").style.display="none";
   player.playVideo();
   player.unMute();
 
-  setInterval(() => {
-    elapsed++;
-    document.getElementById("progressBar").style.width =
-      (elapsed / DURATION) * 100 + "%";
-
-    if (elapsed >= DURATION) {
-      document.getElementById("offer").style.display = "block";
+  setInterval(()=>{
+    seconds++;
+    document.getElementById("bar").style.width=(seconds/VIDEO_DURATION)*100+"%";
+    if(seconds>=VIDEO_DURATION){
+      document.getElementById("offer").style.display="block";
     }
-  }, 1000);
+  },1000);
 }
 </script>
 
