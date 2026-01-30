@@ -6,82 +6,108 @@
 <title>La Gelatina Saciante</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 body {
-  background:#fff;
   font-family: Arial, sans-serif;
+  background: #fff;
 }
 
+/* VIDEO 9:16 */
 .video-wrapper {
   position: relative;
-  width: 100%;
-  max-width: 400px;
-  margin: 30px auto;
   padding-bottom: 177.77%;
+  height: 0;
+  overflow: hidden;
   background: #000;
   border-radius: 16px;
+  max-width: 400px;
+  margin: 30px auto;
+}
+
+/* IFRAME */
+#player {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* OVERLAY CON IMAGEN */
+.video-cover {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  background-image: url('PON_AQUI_LA_URL_DE_TU_IMAGEN');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.video-cover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+}
+
+.video-cover-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+}
+
+.play-icon {
+  width: 100px;
+  height: 100px;
+  background: #ff0000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  box-shadow: 0 0 0 0 rgba(255,0,0,.6);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255,0,0,.6); }
+  70% { box-shadow: 0 0 0 25px rgba(255,0,0,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,0,0,0); }
+}
+
+/* PROGRESS BAR */
+.progress-container {
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+  height: 14px;
+  background: #e5e7eb;
+  border-radius: 0 0 16px 16px;
   overflow: hidden;
 }
 
-#player {
-  position:absolute;
-  inset:0;
-}
-
-.overlay-start {
-  position:absolute;
-  inset:0;
-  z-index:20;
-  background: rgba(0,0,0,0.55);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  color:#fff;
-  cursor:pointer;
-}
-
-.play-btn {
-  width:90px;
-  height:90px;
-  background:#ef4444;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:36px;
-  margin-bottom:12px;
-}
-
-.countdown {
-  font-size:48px;
-  font-weight:bold;
-}
-
-.progress-container {
-  max-width:400px;
-  margin:auto;
-  height:14px;
-  background:#e5e7eb;
-  border-radius:0 0 16px 16px;
-  overflow:hidden;
-}
-
 .progress-bar {
-  height:100%;
-  width:0%;
-  background:linear-gradient(90deg,#16a34a,#22c55e);
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg,#16a34a,#22c55e);
 }
 
-.offer {
-  display:none;
-  max-width:400px;
-  margin:30px auto;
-  padding:20px;
-  background:#ecfdf5;
-  border-radius:16px;
-  text-align:center;
+/* OFERTA */
+#offer {
+  display: none;
+  max-width: 400px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #ecfdf5;
+  border-radius: 16px;
+  text-align: center;
 }
 </style>
 </head>
@@ -92,17 +118,17 @@ body {
 
   <div id="player"></div>
 
-  <!-- OVERLAY INICIAL -->
-  <div id="startOverlay" class="overlay-start">
-    <div class="play-btn">▶</div>
-    <div class="text-xl font-bold">VER VÍDEO</div>
-    <div class="text-sm mt-1">🔊 Audio activado</div>
-  </div>
-
-  <!-- OVERLAY COUNTDOWN -->
-  <div id="countOverlay" class="overlay-start hidden">
-    <div class="countdown" id="countNum">10</div>
-    <div class="mt-2 text-sm">Preparando vídeo…</div>
+  <!-- OVERLAY IMAGEN -->
+  <div id="startOverlay" class="video-cover" onclick="playVideo()">
+    <div class="video-cover-content">
+      <div class="play-icon">
+        <i class="fas fa-play text-4xl ml-1"></i>
+      </div>
+      <p class="text-2xl font-bold mt-4 uppercase">Ver vídeo</p>
+      <p class="text-lg mt-2 opacity-90">
+        <i class="fas fa-volume-up mr-2"></i> Audio activado
+      </p>
+    </div>
   </div>
 
 </div>
@@ -111,71 +137,51 @@ body {
   <div id="progressBar" class="progress-bar"></div>
 </div>
 
-<div class="offer" id="offer">
-  <h2 class="text-2xl font-bold mb-2">Acceso especial</h2>
+<div id="offer">
+  <h2 class="text-2xl font-bold mb-2">Oferta especial</h2>
   <p class="line-through text-gray-500">$47</p>
   <p class="text-4xl font-bold text-green-600 mb-4">$17</p>
   <a href="https://pay.hotmart.com/F104176785O"
-     class="bg-green-600 text-white py-4 px-6 rounded-xl text-lg block">
-    Acceder ahora
+     class="bg-green-600 text-white py-4 px-6 rounded-xl text-lg block font-bold">
+     Acceder ahora
   </a>
 </div>
 
 <script>
-let player;
+const VIDEO_ID = "7xnYhf2vbTE";
 const DURATION = 460;
 let elapsed = 0;
-
-const startOverlay = document.getElementById("startOverlay");
-const countOverlay = document.getElementById("countOverlay");
-const countNum = document.getElementById("countNum");
-const progressBar = document.getElementById("progressBar");
-const offer = document.getElementById("offer");
+let player;
 
 var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 document.body.appendChild(tag);
 
-window.onYouTubeIframeAPIReady = function() {
+window.onYouTubeIframeAPIReady = function () {
   player = new YT.Player('player', {
-    videoId: '7xnYhf2vbTE',
+    videoId: VIDEO_ID,
     playerVars: {
-      controls:0,
-      disablekb:1,
-      rel:0,
-      modestbranding:1,
-      playsinline:1
+      controls: 0,
+      disablekb: 1,
+      rel: 0,
+      modestbranding: 1,
+      playsinline: 1
     }
   });
 };
 
-startOverlay.onclick = () => {
-  startOverlay.classList.add("hidden");
-  countOverlay.classList.remove("hidden");
-
-  let c = 10;
-  countNum.textContent = c;
-
-  const countdown = setInterval(() => {
-    c--;
-    countNum.textContent = c;
-    if (c <= 0) {
-      clearInterval(countdown);
-      countOverlay.classList.add("hidden");
-      startVideo();
-    }
-  }, 1000);
-};
-
-function startVideo() {
+function playVideo() {
+  document.getElementById("startOverlay").style.display = "none";
   player.playVideo();
   player.unMute();
 
   setInterval(() => {
     elapsed++;
-    progressBar.style.width = (elapsed / DURATION) * 100 + "%";
+    document.getElementById("progressBar").style.width =
+      (elapsed / DURATION) * 100 + "%";
+
     if (elapsed >= DURATION) {
-      offer.style.display = "block";
+      document.getElementById("offer").style.display = "block";
     }
   }, 1000);
 }
