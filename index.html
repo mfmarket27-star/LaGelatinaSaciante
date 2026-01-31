@@ -10,12 +10,13 @@
 </script>
 
 
+  <!DOCTYPE html>
+<html lang="es">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Gelatina Que Te Hará Bajar De Peso</title>
-    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/Digitalpressgoods/MK-Digital-Press/main/vaiborra.jpeg">
 
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;800&display=swap" rel="stylesheet">
@@ -24,78 +25,64 @@
     <style>
         body {
             font-family: 'Open Sans', sans-serif;
-            background-color: #ffffff;
-            color: #333333;
+            background: #fff;
+            color: #333;
         }
+
         .video-wrapper {
             position: relative;
             padding-bottom: 177.77%;
             height: 0;
             overflow: hidden;
+            border-radius: 14px;
             background: #000;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
+
         .video-wrapper iframe {
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            inset: 0;
+            width: 100%;
+            height: 100%;
         }
-        .play-overlay {
+
+        .overlay {
             position: absolute;
             inset: 0;
-            background: rgba(0,0,0,0.4);
+            background: rgba(0,0,0,.45);
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 20;
             cursor: pointer;
+            z-index: 10;
         }
-        .play-icon {
-            font-size: 80px;
-            color: white;
-            background-color: #ef4444;
+
+        .play {
+            width: 90px;
+            height: 90px;
+            background: #ef4444;
             border-radius: 50%;
-            width: 100px;
-            height: 100px;
             display: flex;
             align-items: center;
             justify-content: center;
-            animation: pulse-red 2s infinite;
+            color: white;
+            font-size: 38px;
+            animation: pulse 2s infinite;
         }
-        @keyframes pulse-red {
-            0% {transform: scale(0.95);}
-            70% {transform: scale(1);}
-            100% {transform: scale(0.95);}
+
+        @keyframes pulse {
+            0% {transform: scale(.95)}
+            70% {transform: scale(1)}
+            100% {transform: scale(.95)}
         }
-        .progress-container {
-            width: 100%;
-            height: 16px;
-            background: #e5e7eb;
-            border-radius: 0 0 12px 12px;
-            margin-top: -5px;
-        }
-        .progress-bar {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg,#e20b0b,#ed0808);
-        }
-        #offer-section {
-            display: none;
-        }
-        .cta-button {
+
+        .cta {
             background: linear-gradient(to bottom,#16a34a,#15803d);
             border-bottom: 5px solid #14532d;
-            transition: all 0.1s;
-        }
-        .cta-button:active {
-            transform: translateY(4px);
-            border-bottom: 2px solid #14532d;
         }
     </style>
 </head>
 
-<body class="min-h-screen flex flex-col items-center">
+<body class="min-h-screen flex flex-col items-center px-4">
 
 <header class="text-center mt-6">
     <h1 class="text-3xl font-bold">
@@ -104,86 +91,58 @@
     <p class="mt-2 text-gray-600">Mira el vídeo y en solo 8 minutos lo entenderás todo.</p>
 </header>
 
-<main class="w-full max-w-md mt-6 px-4">
+<main class="w-full max-w-md mt-6">
 
+    <!-- VIDEO -->
     <div class="video-wrapper">
-        <div id="startOverlay" class="play-overlay">
-            <div class="text-center" onclick="playVideo()">
-                <div class="play-icon mx-auto">
-                    <i class="fas fa-play"></i>
-                </div>
-                <p class="text-white font-bold text-2xl uppercase mt-3">Ver Vídeo</p>
+        <div id="overlay" class="overlay" onclick="playVideo()">
+            <div class="play">
+                <i class="fas fa-play"></i>
             </div>
         </div>
-        <div id="player"></div>
-    </div>
 
-    <div class="progress-container">
-        <div id="progressBar" class="progress-bar"></div>
+        <!-- 🔴 ESTE ES EL VÍDEO CORRECTO -->
+        <iframe
+            id="video"
+            src="https://www.youtube.com/embed/7xnYhf2vbTE?enablejsapi=1&rel=0&modestbranding=1"
+            frameborder="0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen>
+        </iframe>
     </div>
 
     <!-- OFERTA -->
-    <div id="offer-section" class="mt-8 bg-blue-50 p-6 rounded-xl text-center shadow-xl">
+    <div id="offer" class="hidden mt-8 bg-blue-50 p-6 rounded-xl text-center shadow-xl">
         <h2 class="text-2xl font-black mb-4">¡Oferta Especial!</h2>
-        <div class="text-gray-500 mb-2">
+
+        <p class="text-gray-500 mb-2">
             Precio habitual <span class="line-through">$50</span>
-        </div>
+        </p>
+
         <div class="text-5xl font-black text-blue-700 mb-4">$14</div>
+
         <a href="https://pay.hotmart.com/F104176785O"
            target="_blank"
-           class="cta-button block text-white font-extrabold text-xl py-5 rounded-xl">
+           class="cta block text-white font-extrabold text-xl py-5 rounded-xl">
             ACCESO AL CONTENIDO
         </a>
+
         <p class="text-sm text-gray-500 mt-3">Pago seguro · Acceso inmediato</p>
     </div>
 
 </main>
 
 <script>
-    const VIDEO_ID = "7xnYhf2vbTE";
-    const TARGET_TIME = 298;
-    let player, interval, offerShown = false;
-
-    var tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    document.body.appendChild(tag);
-
-    function onYouTubeIframeAPIReady() {
-        player = new YT.Player('player', {
-            videoId: VIDEO_ID,
-            playerVars: {
-                controls: 1,
-                playsinline: 1
-            },
-            events: { onStateChange: onStateChange }
-        });
-    }
-
     function playVideo() {
-        player.playVideo();
-        document.getElementById('startOverlay').style.display = 'none';
-        startProgress();
-    }
+        const iframe = document.getElementById('video');
+        iframe.src += "&autoplay=1";
+        document.getElementById('overlay').style.display = "none";
 
-    function startProgress() {
-        interval = setInterval(() => {
-            const current = player.getCurrentTime();
-            const percent = (current / TARGET_TIME) * 100;
-            document.getElementById('progressBar').style.width = percent + "%";
-
-            if (current >= TARGET_TIME && !offerShown) {
-                offerShown = true;
-                document.getElementById('offer-section').style.display = 'block';
-                document.getElementById('offer-section').scrollIntoView({behavior: 'smooth', block: 'center'});
-            }
-        }, 500);
-    }
-
-    function onStateChange(e) {
-        if (e.data === YT.PlayerState.ENDED && !offerShown) {
-            offerShown = true;
-            document.getElementById('offer-section').style.display = 'block';
-        }
+        // muestra oferta a los 5 min (ajusta si quieres)
+        setTimeout(() => {
+            document.getElementById('offer').classList.remove('hidden');
+            document.getElementById('offer').scrollIntoView({behavior:'smooth'});
+        }, 300000);
     }
 </script>
 
