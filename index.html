@@ -9,35 +9,19 @@
     })(window, document, "clarity", "script", "va166fbri0");
 </script>
 
-    <meta name="facebook-domain-verification" content="h2b8452zwodcytv8k5e8wylkgh0jxo" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Gelatina Saciante</title>
+    <title>La Gelatina Que Te Hará Bajar De Peso</title>
     <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/Digitalpressgoods/MK-Digital-Press/main/vaiborra.jpeg">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://www.youtube.com">
-
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- Fuente -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;800&display=swap" rel="stylesheet">
 
+    <!-- Iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Meta Pixel Code -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1253544629968428');
-    fbq('track', 'PageView');
-    </script>
 
     <style>
         body {
@@ -48,7 +32,7 @@
 
         .video-wrapper {
             position: relative;
-            padding-bottom: 177.77%;
+            padding-bottom: 177.77%; /* formato 9:16 */
             height: 0;
             overflow: hidden;
             background: #000;
@@ -57,172 +41,167 @@
         }
 
         .video-wrapper iframe {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-        }
-
-        .click-shield {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 10; background: transparent; display: none;
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
         }
 
         .play-overlay {
-            position: absolute; inset: 0;
+            position: absolute;
+            inset: 0;
             background: rgba(0,0,0,0.4);
-            backdrop-filter: blur(2px);
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             z-index: 20;
             cursor: pointer;
         }
 
         .play-icon {
             font-size: 80px;
-            color: #fff;
+            color: white;
             background-color: #ef4444;
             border-radius: 50%;
-            width: 100px; height: 100px;
-            display: flex; align-items: center; justify-content: center;
-            padding-left: 8px;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             animation: pulse-red 2s infinite;
-            margin-bottom: 20px;
         }
 
         @keyframes pulse-red {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239,68,68,.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(239,68,68,0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239,68,68,0); }
+            0% {transform: scale(0.95);}
+            70% {transform: scale(1);}
+            100% {transform: scale(0.95);}
         }
 
         .progress-container {
-            width: 100%; height: 16px;
-            background-color: #e5e7eb;
+            width: 100%;
+            height: 16px;
+            background: #e5e7eb;
             border-radius: 0 0 12px 12px;
-            overflow: hidden;
+            margin-top: -5px;
         }
 
         .progress-bar {
             height: 100%;
-            background: linear-gradient(90deg,#e20b0b,#ed0808);
             width: 0%;
+            background: linear-gradient(90deg,#e20b0b,#ed0808);
         }
 
-        #offer-section { display:none; animation:fadeIn 1.5s ease; }
+        #offer-section {
+            display: none;
+        }
 
-        @keyframes fadeIn {
-            from { opacity:0; transform:translateY(20px);}
-            to { opacity:1; transform:translateY(0);}
+        .cta-button {
+            background: linear-gradient(to bottom,#16a34a,#15803d);
+            border-bottom: 5px solid #14532d;
+            transition: all 0.1s;
+        }
+
+        .cta-button:active {
+            transform: translateY(4px);
+            border-bottom: 2px solid #14532d;
         }
     </style>
 </head>
+<body class="min-h-screen flex flex-col items-center">
 
-<body class="min-h-screen flex flex-col items-center pb-12">
-
-<header class="w-full max-w-4xl px-4 pt-6 text-center">
-    <div class="bg-red-100 text-red-800 text-sm font-semibold uppercase py-2 px-4 inline-block rounded-full mb-4">
-        ⚠️ Importante: activa el sonido
-    </div>
-
-    <h1 class="text-3xl md:text-4xl font-semibold mb-3">
-        LA <span class="text-red-600">GELATINA</span> <span class="text-red-600">SACIANTE</span>
+<header class="text-center mt-6">
+    <h1 class="text-3xl font-bold">
+        LA <span class="text-red-600">GELATINA</span> QUE TE HARÁ <span class="text-red-600">BAJAR DE PESO</span>
     </h1>
-
-    <p class="text-gray-600 text-lg max-w-2xl mx-auto">
-        Mira este vídeo hasta el final y descubre cómo reducir el hambre sin dietas extremas.
-    </p>
+    <p class="mt-2 text-gray-600">Mira el vídeo y en solo 8 minutos lo entenderás todo.</p>
 </header>
 
-<main class="w-full max-w-3xl px-4 my-6 flex flex-col items-center">
+<main class="w-full max-w-md mt-6 px-4">
 
-    <div class="w-full max-w-[400px] relative">
-        <div class="video-wrapper">
-            <div id="startOverlay" class="play-overlay" onclick="playYouTubeVideo(0)">
-                <div class="play-icon"><i class="fas fa-play"></i></div>
-                <p class="text-white font-bold text-2xl uppercase">Ver vídeo</p>
+    <!-- Video -->
+    <div class="video-wrapper">
+        <div id="startOverlay" class="play-overlay">
+            <div class="text-center" onclick="playVideo()">
+                <div class="play-icon mx-auto">
+                    <i class="fas fa-play" style="font-size: 40px; margin-left: 5px;"></i>
+                </div>
+                <p class="text-white font-bold text-2xl uppercase mt-3">Ver Vídeo</p>
             </div>
-            <div id="clickShield" class="click-shield"></div>
-            <div id="player"></div>
         </div>
-        <div class="progress-container">
-            <div id="fakeProgressBar" class="progress-bar"></div>
-        </div>
+        <div id="player"></div>
     </div>
 
-    <div id="offer-section" class="w-full mt-8 text-center bg-blue-50 p-6 rounded-2xl shadow-xl">
+    <div class="progress-container">
+        <div id="progressBar" class="progress-bar"></div>
+    </div>
 
-        <h2 class="text-3xl font-black mb-4">Oferta Especial Activada</h2>
-        <p class="text-lg mb-6">Accede ahora a La Gelatina Saciante con descuento exclusivo.</p>
+    <!-- Oferta -->
+    <div id="offer-section" class="mt-8 bg-blue-50 p-6 rounded-xl text-center shadow-xl">
+        <h2 class="text-2xl font-black mb-4">¡Oferta Especial!</h2>
 
-        <div class="bg-white rounded-xl p-6 max-w-sm mx-auto mb-6 shadow-md">
-            <div class="text-gray-500 font-bold text-xl mb-1">
-                Precio habitual: <span class="line-through">$50.00</span>
-            </div>
-            <div class="text-6xl font-black text-blue-700 my-2">$17.68</div>
+        <div class="text-gray-500 mb-2">
+            Precio habitual <span class="line-through">$50</span>
         </div>
 
-        <a href="https://pay.hotmart.com/F104176785O" target="_blank"
-           class="cta-button w-full flex justify-center items-center text-white font-extrabold text-2xl py-5 rounded-xl uppercase">
-           ACCEDER AHORA
+        <div class="text-5xl font-black text-blue-700 mb-4">$14</div>
+
+        <a href="https://pay.hotmart.com/F104176785O"
+           target="_blank"
+           class="cta-button block text-white font-extrabold text-xl py-5 rounded-xl">
+            ACCESO AL CONTENIDO
         </a>
 
-        <p class="text-sm text-gray-500 mt-4">Pago seguro · Acceso inmediato</p>
+        <p class="text-sm text-gray-500 mt-3">Pago seguro · Acceso inmediato</p>
     </div>
+
 </main>
 
-<footer class="py-8 text-center text-gray-400 text-xs w-full">
-    <p>&copy; La Gelatina Saciante. Todos los derechos reservados.</p>
-</footer>
-
 <script>
-const YOUTUBE_VIDEO_ID = "7xnYhf2vbTE";
-const TARGET_TIME_SECONDS = 298;
-const STORAGE_KEY = "la_gelatina_saciante";
+    const VIDEO_ID = "eEdhpQqDnyI";
+    const TARGET_TIME = 298;
+    let player, interval, offerShown = false;
 
-let player, interval, offerRevealed=false;
-const progressBar=document.getElementById('fakeProgressBar');
-const offerSection=document.getElementById('offer-section');
+    // Carga la API de YouTube
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    document.body.appendChild(tag);
 
-var tag=document.createElement('script');
-tag.src="https://www.youtube.com/iframe_api";
-document.body.appendChild(tag);
-
-function onYouTubeIframeAPIReady(){
-    player=new YT.Player('player',{
-        videoId:YOUTUBE_VIDEO_ID,
-        playerVars:{controls:0,rel:0},
-        events:{onStateChange:onPlayerStateChange}
-    });
-}
-
-function playYouTubeVideo(start){
-    player.seekTo(start);
-    player.playVideo();
-    document.getElementById('startOverlay').style.display='none';
-    startTimerLoop();
-}
-
-function onPlayerStateChange(e){
-    if(e.data===YT.PlayerState.ENDED && !offerRevealed){
-        revealOffer();
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+            videoId: VIDEO_ID,
+            playerVars: {
+                controls: 1,
+                playsinline: 1
+            },
+            events: { onStateChange: onStateChange }
+        });
     }
-}
 
-function startTimerLoop(){
-    interval=setInterval(()=>{
-        let t=player.getCurrentTime();
-        let d=player.getDuration()||315;
-        progressBar.style.width=(t/d)*100+"%";
-        if(t>=TARGET_TIME_SECONDS && !offerRevealed){
-            revealOffer();
+    function playVideo() {
+        player.playVideo();
+        document.getElementById('startOverlay').style.display = 'none';
+        startProgress();
+    }
+
+    function startProgress() {
+        interval = setInterval(() => {
+            const current = player.getCurrentTime();
+            const percent = (current / TARGET_TIME) * 100;
+            document.getElementById('progressBar').style.width = percent + "%";
+
+            if (current >= TARGET_TIME && !offerShown) {
+                offerShown = true;
+                document.getElementById('offer-section').style.display = 'block';
+                document.getElementById('offer-section').scrollIntoView({behavior: 'smooth', block: 'center'});
+            }
+        }, 500);
+    }
+
+    function onStateChange(e) {
+        if (e.data === YT.PlayerState.ENDED && !offerShown) {
+            offerShown = true;
+            document.getElementById('offer-section').style.display = 'block';
         }
-    },500);
-}
-
-function revealOffer(){
-    offerRevealed=true;
-    offerSection.style.display="block";
-    offerSection.scrollIntoView({behavior:"smooth"});
-}
+    }
 </script>
 
 </body>
