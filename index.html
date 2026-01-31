@@ -9,10 +9,19 @@
     })(window, document, "clarity", "script", "va166fbri0");
 </script>
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="facebook-domain-verification" content="h2b8452zwodcytv8k5e8wylkgh0jxo" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Gelatina Que Te Hará Bajar De Peso</title>
     <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/Digitalpressgoods/MK-Digital-Press/main/vaiborra.jpeg">
+
+    <!-- OPTIMIZACIÓN DE VELOCIDAD -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.youtube.com">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -21,7 +30,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;800&display=swap" rel="stylesheet">
 
     <!-- Iconos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+
+    <!-- Meta Pixel -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1253544629968428');
+        fbq('track', 'PageView');
+    </script>
 
     <style>
         body {
@@ -32,7 +55,7 @@
 
         .video-wrapper {
             position: relative;
-            padding-bottom: 177.77%; /* formato 9:16 */
+            padding-bottom: 177.77%;
             height: 0;
             overflow: hidden;
             background: #000;
@@ -44,6 +67,14 @@
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
+            pointer-events: none;
+        }
+
+        .click-shield {
+            position: absolute;
+            inset: 0;
+            z-index: 10;
+            display: none;
         }
 
         .play-overlay {
@@ -81,7 +112,6 @@
             height: 16px;
             background: #e5e7eb;
             border-radius: 0 0 12px 12px;
-            margin-top: -5px;
         }
 
         .progress-bar {
@@ -97,34 +127,24 @@
         .cta-button {
             background: linear-gradient(to bottom,#16a34a,#15803d);
             border-bottom: 5px solid #14532d;
-            transition: all 0.1s;
-        }
-
-        .cta-button:active {
-            transform: translateY(4px);
-            border-bottom: 2px solid #14532d;
         }
     </style>
 </head>
+
 <body class="min-h-screen flex flex-col items-center">
 
 <header class="text-center mt-6">
     <h1 class="text-3xl font-bold">
         LA <span class="text-red-600">GELATINA</span> QUE TE HARÁ <span class="text-red-600">BAJAR DE PESO</span>
     </h1>
-    <p class="mt-2 text-gray-600">Mira el vídeo y en solo 8 minutos lo entenderás todo.</p>
 </header>
 
 <main class="w-full max-w-md mt-6 px-4">
 
-    <!-- Video -->
     <div class="video-wrapper">
-        <div id="startOverlay" class="play-overlay">
-            <div class="text-center" onclick="playVideo()">
-                <div class="play-icon mx-auto">
-                    <i class="fas fa-play" style="font-size: 40px; margin-left: 5px;"></i>
-                </div>
-                <p class="text-white font-bold text-2xl uppercase mt-3">Ver Vídeo</p>
+        <div id="startOverlay" class="play-overlay" onclick="playVideo()">
+            <div class="play-icon">
+                <i class="fas fa-play"></i>
             </div>
         </div>
         <div id="player"></div>
@@ -134,7 +154,7 @@
         <div id="progressBar" class="progress-bar"></div>
     </div>
 
-    <!-- Oferta -->
+    <!-- OFERTA -->
     <div id="offer-section" class="mt-8 bg-blue-50 p-6 rounded-xl text-center shadow-xl">
         <h2 class="text-2xl font-black mb-4">¡Oferta Especial!</h2>
 
@@ -160,7 +180,6 @@
     const TARGET_TIME = 298;
     let player, interval, offerShown = false;
 
-    // Carga la API de YouTube
     var tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
     document.body.appendChild(tag);
@@ -168,11 +187,10 @@
     function onYouTubeIframeAPIReady() {
         player = new YT.Player('player', {
             videoId: VIDEO_ID,
-            playerVars: {
-                controls: 1,
-                playsinline: 1
-            },
-            events: { onStateChange: onStateChange }
+            playerVars: {controls: 0, fs: 0},
+            events: {
+                onStateChange: onStateChange
+            }
         });
     }
 
@@ -191,14 +209,12 @@
             if (current >= TARGET_TIME && !offerShown) {
                 offerShown = true;
                 document.getElementById('offer-section').style.display = 'block';
-                document.getElementById('offer-section').scrollIntoView({behavior: 'smooth', block: 'center'});
             }
         }, 500);
     }
 
     function onStateChange(e) {
-        if (e.data === YT.PlayerState.ENDED && !offerShown) {
-            offerShown = true;
+        if (e.data === YT.PlayerState.ENDED) {
             document.getElementById('offer-section').style.display = 'block';
         }
     }
