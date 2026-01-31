@@ -9,58 +9,27 @@
     })(window, document, "clarity", "script", "va166fbri0");
 </script>
 
-   <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 
-    <meta name="facebook-domain-verification" content="h2b8452zwodcytv8k5e8wylkgh0jxo" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Verdad Oculta de LATAM</title>
-    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/Digitalpressgoods/MK-Digital-Press/main/vaiborra.jpeg">
-    
-    <!-- OPTIMIZACIÓN DE VELOCIDAD -->
+    <title>Gelatina Saciante</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://www.youtube.com">
-    
-    <!-- Tailwind CSS -->
+
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Fuente: Open Sans -->
+
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;800&display=swap" rel="stylesheet">
-    
-    <!-- Iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- MICROSOFT CLARITY -->
-    <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)}
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)
-    })(window, document, "clarity", "script", "v60nu0dgrq");
-    </script>
-
-    <!-- Meta Pixel Code -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1253544629968428');
-    fbq('track', 'PageView');
-    </script>
 
     <style>
         body {
             font-family: 'Open Sans', sans-serif;
             background-color: #ffffff;
-            color: #333333;
+            color: #333;
         }
 
         .video-wrapper {
@@ -69,12 +38,13 @@
             height: 0;
             overflow: hidden;
             background: #000;
-            border-radius: 12px;
+            border-radius: 14px;
         }
 
         .video-wrapper iframe {
             position: absolute;
-            top: 0; left: 0;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
@@ -83,25 +53,25 @@
         .play-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(0,0,0,0.4);
+            background: rgba(0,0,0,0.45);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            z-index: 20;
+            z-index: 10;
             cursor: pointer;
         }
 
         .play-icon {
-            font-size: 80px;
-            color: white;
-            background: #ef4444;
-            border-radius: 50%;
             width: 100px;
             height: 100px;
+            background: #ef4444;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            color: white;
+            font-size: 42px;
             margin-bottom: 20px;
             animation: pulse 2s infinite;
         }
@@ -112,45 +82,81 @@
             100% { transform: scale(0.95); }
         }
 
-        #offer-section { display: none; }
+        #offer-section {
+            display: none;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 
-<body class="min-h-screen flex flex-col items-center">
+<body class="min-h-screen flex flex-col items-center pb-12">
 
-<header class="text-center mt-6">
-    <h1 class="text-3xl font-bold">
-        LA <span class="text-red-600">VERDAD OCULTA</span> DE LATAM
+<header class="text-center px-4 mt-6 max-w-xl">
+    <div class="bg-green-100 text-green-800 font-semibold text-sm py-2 px-4 rounded-full inline-block mb-4">
+        🍓 Método Natural y Saciante
+    </div>
+
+    <h1 class="text-3xl font-extrabold leading-tight mb-3">
+        La <span class="text-green-600">Gelatina Saciante</span><br>
+        que ayuda a comer menos sin pasar hambre
     </h1>
+
+    <p class="text-gray-600 text-lg">
+        Mira el vídeo y descubre cómo usarla para controlar el apetito.
+    </p>
 </header>
 
-<main class="w-full max-w-md mt-6 px-4">
+<main class="w-full max-w-md px-4 mt-6">
 
-    <div class="video-wrapper">
+    <div class="video-wrapper shadow-xl">
         <div class="play-overlay" onclick="playVideo()">
             <div class="play-icon">
                 <i class="fas fa-play"></i>
             </div>
-            <p class="text-white font-bold text-xl">VER VÍDEO</p>
+            <p class="text-white font-bold text-xl uppercase">Ver vídeo</p>
+            <p class="text-gray-200 mt-2">
+                <i class="fas fa-volume-up mr-2"></i> Activa el sonido
+            </p>
         </div>
         <div id="player"></div>
     </div>
 
-    <div id="offer-section" class="mt-8 text-center bg-blue-50 p-6 rounded-xl">
-        <h2 class="text-2xl font-black mb-4">Oferta Especial</h2>
+    <!-- OFERTA -->
+    <div id="offer-section" class="mt-8 text-center bg-green-50 p-6 rounded-2xl shadow-lg border border-green-200">
+        <h2 class="text-2xl font-black mb-3">
+            Accede a la Receta Completa
+        </h2>
+
+        <p class="text-gray-700 mb-6">
+            Aprende paso a paso cómo preparar la <strong>Gelatina Saciante</strong>,
+            cuándo tomarla y cómo integrarla en tu día para reducir el hambre.
+        </p>
+
+        <div class="text-5xl font-black text-green-700 mb-4">
+            <span class="text-3xl">$</span>14
+        </div>
 
         <a href="https://pay.hotmart.com/A104089308J"
            target="_blank"
-           class="block bg-green-600 text-white font-bold text-xl py-4 rounded-xl">
-            ACCEDER AL CONTENIDO
+           class="block bg-green-600 hover:bg-green-700 text-white font-extrabold text-xl py-5 rounded-xl shadow-md uppercase">
+            Acceder ahora
         </a>
+
+        <p class="text-sm text-gray-500 mt-4">
+            Acceso inmediato · Pago seguro
+        </p>
     </div>
 
 </main>
 
 <script>
     const YOUTUBE_VIDEO_ID = "eEdhpQqDnyI";
-    const SHOW_OFFER_AT = 298;
+    const SHOW_OFFER_AT = 300;
 
     let player;
     let offerShown = false;
@@ -162,10 +168,8 @@
                 controls: 0,
                 rel: 0,
                 fs: 0,
-                playsinline: 1
-            },
-            events: {
-                onStateChange: onPlayerStateChange
+                playsinline: 1,
+                modestbranding: 1
             }
         });
     }
@@ -183,8 +187,6 @@
         }
     }
 
-    function onPlayerStateChange(event) {}
-
     var tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
     document.body.appendChild(tag);
@@ -192,5 +194,3 @@
 
 </body>
 </html>
-
-    
